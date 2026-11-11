@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>مشويات الباشا – EL BASHA GRILL | المنيو</title>
+  <meta name="description" content="المنيو الإلكتروني لمشويات الباشا – EL BASHA GRILL: صواني، مشاوي، بيتزا، كريب، فطير، سندوتشات وسماش ساندوتش.">
+  <meta name="theme-color" content="#0b0807">
+  <meta property="og:title" content="مشويات الباشا – EL BASHA GRILL">
+  <meta property="og:description" content="مشويات الباشا... أنت الباشا">
+  <meta property="og:image" content="logo.png">
+  <link rel="icon" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Reem+Kufi:wght@500;700&display=swap" rel="stylesheet">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <header class="hero" id="top">
+    <canvas class="sparks" id="sparks-hero" aria-hidden="true"></canvas>
+    <div class="hero-inner">
+      <div class="logo-wrap">
+        <img src="logo.png" alt="لوجو مشويات الباشا" class="logo" width="300" height="300" fetchpriority="high" onerror="this.parentElement.style.display='none'">
+      </div>
+      <h1 class="fade-up" style="--t:.85s">مشويات الباشا</h1>
+      <p class="en fade-up" dir="ltr" style="--t:1s">EL BASHA GRILL</p>
+      <p class="tagline fade-up" style="--t:1.15s">مشويات الباشا... أنت الباشا</p>
+      <a href="#menu" class="cta fade-up" style="--t:1.35s">استكشف المنيو</a>
+    </div>
+  </header>
+
+  <nav class="catnav" id="catnav" aria-label="أقسام المنيو">
+    <div class="catnav-track" id="navTrack"></div>
+  </nav>
+
+  <main id="menu"></main>
+
+  <footer class="footer" id="contact">
+    <canvas class="sparks" id="sparks-foot" aria-hidden="true"></canvas>
+    <div class="footer-inner">
+      <img src="logo.png" alt="" class="f-logo" width="120" height="120" loading="lazy" onerror="this.style.display='none'">
+      <h2>مشويات الباشا – EL BASHA GRILL</h2>
+      <span class="rule"></span>
+      <div class="contacts">
+        <a class="btn-contact primary" id="waBtn" href="https://wa.me/201007475474" target="_blank" rel="noopener noreferrer">
+          <span class="bc-main">واتساب للحجز والطلبات</span>
+          <span class="bc-sub" dir="ltr">01007475474</span>
+        </a>
+        <a class="btn-contact" href="https://www.facebook.com/share/1QFfQHdXKm/" target="_blank" rel="noopener noreferrer">
+          <span class="bc-main">Facebook</span>
+        </a>
+        <a class="btn-contact" href="https://www.instagram.com/elbasha_grill?psln=amR6Zm90Z3o0cGFy" target="_blank" rel="noopener noreferrer">
+          <span class="bc-main">Instagram</span>
+        </a>
+      </div>
+      <p class="closing">مشويات الباشا... أنت الباشا</p>
+    </div>
+  </footer>
+
+  <script src="menu-data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
