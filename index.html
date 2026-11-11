@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>مشويات الباشا – EL BASHA GRILL | المنيو</title>
+  <meta name="description" content="المنيو الإلكتروني لمشويات الباشا – EL BASHA GRILL: صواني، مشاوي، بيتزا، كريب، فطير، سندوتشات وسماش ساندوتش. اختر أصنافك وأرسل طلبك على واتساب.">
+  <meta name="theme-color" content="#0b0807">
+  <meta property="og:title" content="مشويات الباشا – EL BASHA GRILL">
+  <meta property="og:description" content="مشويات الباشا... أنت الباشا">
+  <meta property="og:image" content="logo.png">
+  <link rel="icon" href="logo.png">
+  <link rel="preload" as="image" href="logo.webp" type="image/webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@700&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <header class="hero" id="top">
+    <canvas class="sparks" id="sparks-hero" aria-hidden="true"></canvas>
+    <div class="hero-inner">
+      <h1 class="sr-only">مشويات الباشا – EL BASHA GRILL</h1>
+      <div class="plate-wrap">
+        <div class="halo" aria-hidden="true"></div>
+        <div class="plate">
+          <picture>
+            <source srcset="logo.webp" type="image/webp">
+            <img src="logo.png" alt="لوجو مشويات الباشا – EL BASHA GRILL" class="logo" width="433" height="504" fetchpriority="high">
+          </picture>
+        </div>
+      </div>
+      <p class="tagline fade-up" style="--t:1.2s">مشويات الباشا... أنت الباشا</p>
+      <a href="#menu" class="cta fade-up" style="--t:1.4s">استكشف المنيو</a>
+      <p class="hint fade-up" style="--t:1.55s">اختر أصنافك وأرسل طلبك على واتساب مباشرة</p>
+    </div>
+    <div class="hero-weave" aria-hidden="true"></div>
+  </header>
+
+  <nav class="catnav" id="catnav" aria-label="أقسام المنيو">
+    <div class="catnav-track" id="navTrack"></div>
+  </nav>
+
+  <div class="howto" aria-label="طريقة الطلب">
+    <span><b>1</b>اختر أصنافك</span>
+    <span><b>2</b>راجع طلبك</span>
+    <span><b>3</b>أرسله على واتساب</span>
+  </div>
+
+  <main id="menu"></main>
+
+  <footer class="footer" id="contact">
+    <div class="foot-weave" aria-hidden="true"></div>
+    <canvas class="sparks" id="sparks-foot" aria-hidden="true"></canvas>
+    <div class="footer-inner">
+      <div class="plate sm">
+        <picture>
+          <source srcset="logo.webp" type="image/webp">
+          <img src="logo.png" alt="" class="logo" width="433" height="504" loading="lazy">
+        </picture>
+      </div>
+      <h2>مشويات الباشا – EL BASHA GRILL</h2>
+      <span class="rule" aria-hidden="true"></span>
+      <div class="contacts">
+        <a class="btn-contact primary" id="waBtn" href="https://wa.me/201007475474" target="_blank" rel="noopener noreferrer">
+          <span class="bc-main">واتساب للحجز والطلبات</span>
+          <span class="bc-sub" dir="ltr">01007475474</span>
+        </a>
+        <a class="btn-contact" href="https://www.facebook.com/share/1QFfQHdXKm/" target="_blank" rel="noopener noreferrer">
+          <span class="bc-main">Facebook</span>
+        </a>
+        <a class="btn-contact" href="https://www.instagram.com/elbasha_grill?psln=amR6Zm90Z3o0cGFy" target="_blank" rel="noopener noreferrer">
+          <span class="bc-main">Instagram</span>
+        </a>
+      </div>
+      <p class="closing">مشويات الباشا... أنت الباشا</p>
+    </div>
+  </footer>
+
+  <!-- شريط السلة العائم -->
+  <div class="cartbar" id="cartbar">
+    <button type="button" class="cartbar-btn" id="openCart">
+      <span class="cb-count"><b id="cbCount">0</b> صنف</span>
+      <span class="cb-main">مراجعة الطلب</span>
+      <span class="cb-total"><b id="cbTotal">0</b> جنيه</span>
+    </button>
+  </div>
+
+  <!-- نافذة مراجعة الطلب -->
+  <div class="drawer-wrap" id="drawer" aria-hidden="true">
+    <div class="backdrop" id="dBackdrop"></div>
+    <section class="drawer" role="dialog" aria-modal="true" aria-labelledby="dTitle">
+      <div class="d-weave" aria-hidden="true"></div>
+      <header class="d-head">
+        <h2 id="dTitle">طلبك</h2>
+        <button type="button" class="d-close" id="dClose">إغلاق</button>
+      </header>
+
+      <div class="d-body">
+        <p class="empty" id="emptyMsg">لم تضف أي صنف بعد. اضغط أضف على أي صنف من المنيو.</p>
+        <ul class="lines" id="lines"></ul>
+
+        <div class="form" id="orderForm">
+          <div class="seg" role="radiogroup" aria-label="نوع الطلب">
+            <label><input type="radio" name="otype" value="استلام من المطعم" checked><span>استلام من المطعم</span></label>
+            <label><input type="radio" name="otype" value="توصيل"><span>توصيل</span></label>
+          </div>
+          <input type="text" id="fName" placeholder="الاسم (اختياري)" autocomplete="name">
+          <textarea id="fAddr" rows="2" placeholder="العنوان بالتفصيل" hidden></textarea>
+          <textarea id="fNote" rows="2" placeholder="ملاحظات على الطلب (اختياري)"></textarea>
+        </div>
+      </div>
+
+      <footer class="d-foot">
+        <div class="total-row"><span>الإجمالي</span><strong><b id="dTotal">0</b> جنيه</strong></div>
+        <p class="fine">الإجمالي لا يشمل رسوم التوصيل (إن وجدت)</p>
+        <p class="err" id="err" role="alert"></p>
+        <button type="button" class="send" id="sendWa" disabled>إرسال الطلب على واتساب</button>
+        <button type="button" class="clear" id="clearCart">تفريغ الطلب</button>
+      </footer>
+    </section>
+  </div>
+
+  <script src="menu-data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
