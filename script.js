@@ -282,13 +282,6 @@
     openWhatsApp();
   });
 
-  /* زر التأكيد والإرسال المباشر من الشريط السفلي: يستخدم نفس تدفق واتساب
-     بالإعدادات الحالية (استلام من المطعم افتراضيًا)، والمراجعة/التعديل متاح من زر مراجعة الطلب */
-  $('#sendQuick').addEventListener('click', function () {
-    if (!totals().c) return;
-    openWhatsApp();
-  });
-
   /* ---------- reveal + price count-up ---------- */
   function countUp(el) {
     var to = +el.getAttribute('data-v');
