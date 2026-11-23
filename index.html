@@ -83,11 +83,17 @@
 
   <!-- شريط السلة العائم -->
   <div class="cartbar" id="cartbar">
-    <button type="button" class="cartbar-btn" id="openCart">
-      <span class="cb-count"><b id="cbCount">0</b> صنف</span>
-      <span class="cb-main">مراجعة الطلب</span>
-      <span class="cb-total"><b id="cbTotal">0</b> جنيه</span>
-    </button>
+    <div class="cartbar-inner">
+      <button type="button" class="cartbar-btn" id="openCart">
+        <span class="cb-count"><b id="cbCount">0</b> صنف</span>
+        <span class="cb-main">مراجعة الطلب</span>
+        <span class="cb-total"><b id="cbTotal">0</b> جنيه</span>
+      </button>
+      <button type="button" class="cartbar-send" id="sendQuick" aria-label="تأكيد الطلب وإرساله على واتساب">
+        <span class="cbs-main">تأكيد وإرسال</span>
+        <span class="cbs-sub">على واتساب</span>
+      </button>
+    </div>
   </div>
 
   <!-- نافذة مراجعة الطلب -->
