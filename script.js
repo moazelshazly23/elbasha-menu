@@ -78,9 +78,11 @@
 
   function render() {
     var main = $('#menu'), track = $('#navTrack'), html = '', nav = '';
-    MENU.forEach(function (sec) {
+    MENU.forEach(function (sec, idx) {
       nav += '<a class="chip" href="#' + sec.id + '" data-id="' + sec.id + '">' + esc(sec.title) + '</a>';
-      html += '<section class="sec" id="' + sec.id + '"><div class="sec-head reveal"><h2>' + esc(sec.title) + '</h2><span class="rule"></span>';
+      var count = sec.groups.reduce(function (t, g) { return t + g.items.length; }, 0);
+      html += '<section class="sec" id="' + sec.id + '"><div class="sec-head reveal"><span class="sec-num" aria-hidden="true">' + ('0' + (idx + 1)).slice(-2) + '</span>' +
+        '<div class="sec-titles"><h2>' + esc(sec.title) + '</h2><span class="sec-count">' + count + ' صنف</span></div><span class="rule"></span>';
       if (sec.note) html += '<p class="note">' + esc(sec.note) + '</p>';
       html += '</div>';
       sec.groups.forEach(function (g) {
@@ -261,6 +263,13 @@
   }
   window.__buildMsg = buildMsg; /* للاختبار فقط */
 
+  function openWhatsApp() {
+    var url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(buildMsg());
+    var a = document.createElement('a');
+    a.href = url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+    document.body.appendChild(a); a.click(); a.remove();
+  }
+
   $('#sendWa').addEventListener('click', function () {
     if (!totals().c) return;
     var err = $('#err');
@@ -270,10 +279,14 @@
       return;
     }
     err.textContent = '';
-    var url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(buildMsg());
-    var a = document.createElement('a');
-    a.href = url; a.target = '_blank'; a.rel = 'noopener noreferrer';
-    document.body.appendChild(a); a.click(); a.remove();
+    openWhatsApp();
+  });
+
+  /* زر التأكيد والإرسال المباشر من الشريط السفلي: يستخدم نفس تدفق واتساب
+     بالإعدادات الحالية (استلام من المطعم افتراضيًا)، والمراجعة/التعديل متاح من زر مراجعة الطلب */
+  $('#sendQuick').addEventListener('click', function () {
+    if (!totals().c) return;
+    openWhatsApp();
   });
 
   /* ---------- reveal + price count-up ---------- */
@@ -318,7 +331,11 @@
         chips[k].classList.toggle('active', on);
         if (on) chips[k].setAttribute('aria-current', 'true'); else chips[k].removeAttribute('aria-current');
       });
-      if (chips[id]) chips[id].scrollIntoView({ inline: 'center', block: 'nearest', behavior: reduce ? 'auto' : 'smooth' });
+      if (chips[id]) {
+        var c = chips[id], tr = c.parentNode;
+        var delta = (c.getBoundingClientRect().left + c.offsetWidth / 2) - (tr.getBoundingClientRect().left + tr.clientWidth / 2);
+        tr.scrollBy({ left: delta, behavior: reduce ? 'auto' : 'smooth' });
+      }
     }
 
     document.querySelectorAll('.chip').forEach(function (c) {
@@ -412,8 +429,50 @@
     if (a) a.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent('مرحبا مشويات الباشا، أريد الحجز / الطلب');
   }
 
+  /* ---------- الشريط المتحرك ---------- */
+  function setupMarquee() {
+    var nav = $('#catnav');
+    if (!nav || !MENU.length) return;
+    var mq = document.createElement('div');
+    mq.className = 'marquee';
+    mq.setAttribute('aria-hidden', 'true');
+    mq.dir = 'ltr';
+    var seq = MENU.map(function (s2) { return '<span>' + esc(s2.title) + '</span><i>\u2726</i>'; }).join('');
+    mq.innerHTML = '<div class="marquee-track">' + seq + seq + '</div>';
+    nav.parentNode.insertBefore(mq, nav);
+  }
+
+  /* ---------- سهم زرار الاستكشاف ---------- */
+  function setupCtaArrow() {
+    var cta = $('.cta');
+    if (cta && !cta.querySelector('.cta-arrow')) {
+      cta.insertAdjacentHTML('beforeend', '<span class="cta-arrow" aria-hidden="true">\u2304</span>');
+    }
+  }
+
+  /* ---------- ميلان الكروت (ديسكتوب فقط) ---------- */
+  function setupTilt() {
+    if (reduce || !window.matchMedia || !matchMedia('(pointer: fine)').matches) return;
+    document.querySelectorAll('.card').forEach(function (card) {
+      card.addEventListener('pointermove', function (e) {
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        card.style.setProperty('--ry', (px * 5).toFixed(2) + 'deg');
+        card.style.setProperty('--rx', (-py * 5).toFixed(2) + 'deg');
+      });
+      card.addEventListener('pointerleave', function () {
+        card.style.setProperty('--rx', '0deg');
+        card.style.setProperty('--ry', '0deg');
+      });
+    });
+  }
+
   /* ---------- go ---------- */
   render();
+  setupMarquee();
+  setupCtaArrow();
+  setupTilt();
   load();
   Object.keys(cart).forEach(renderQty);
   refresh();
